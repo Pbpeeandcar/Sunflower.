@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunflower with Text</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1 style="text-align: center;">วันนี้เก่งมากๆแล้วนะคับ</h1>
+    <div id="plot" style="width: 600px; height: 600px; margin: auto;"></div>
+    
+    <script>
+        // สร้างข้อมูลสำหรับดอกทานตะวัน
+        var theta = [];
+        var r = [];
+        for (var i = 0; i < 100; i++) {
+            theta.push(i * 4 * Math.PI / 99);
+            r.push(Math.pow(theta[i], 2));
+        }
+        var x = r.map((r_val, index) => r_val * Math.cos(theta[index]));
+        var y = r.map((r_val, index) => r_val * Math.sin(theta[index]));
+
+        // วาดภาพดอกทานตะวัน
+        var trace = {
+            x: x,
+            y: y,
+            mode: 'lines',
+            line: { color: 'gold', width: 2 }
+        };
+        
+        var layout = {
+            xaxis: { visible: false },
+            yaxis: { visible: false },
+            showlegend: false,
+            margin: { l: 0, r: 0, t: 0, b: 0 }
+        };
+        
+        Plotly.newPlot('plot', [trace], layout);
+    </script>
+</body>
+</html>
